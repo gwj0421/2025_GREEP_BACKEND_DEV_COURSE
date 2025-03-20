@@ -27,9 +27,9 @@ public class Step2Controller {
                 String originUrl = STEP_2_VIEW.inputCommand();
                 request.setUrl(UrlUtils.makeUrl(originUrl));
                 switch (request.getUrl().getCategory()) {
-                    case boards -> processBoard(request);
-                    case posts -> processPost(request);
-                    case accounts -> processAccount(request);
+                    case BOARD -> processBoard(request);
+                    case POST -> processPost(request);
+                    case ACCOUNT -> processAccount(request);
                     default -> STEP_2_VIEW.showInvalidInput();
                 }
             } catch (IncorrectInputException | IOException e) {
@@ -40,14 +40,14 @@ public class Step2Controller {
 
     private static void processBoard(Request request) throws IOException {
         switch (request.getUrl().getFunction()) {
-            case add -> {
+            case ADD -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.ADMIN)) {
                     return;
                 }
                 String boardName = STEP_2_VIEW.create();
                 STEP_2_BOARD_SERVICE.create(boardName, request.getSession().getAccountId());
             }
-            case edit -> {
+            case EDIT -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.ADMIN)) {
                     return;
                 }
@@ -60,7 +60,7 @@ public class Step2Controller {
                 boolean result = STEP_2_BOARD_SERVICE.update(boardId, boardName);
                 STEP_2_VIEW.checkUpdateBoard(boardId, result);
             }
-            case remove -> {
+            case REMOVE -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.ADMIN)) {
                     return;
                 }
@@ -68,7 +68,7 @@ public class Step2Controller {
                 boolean result = STEP_2_BOARD_SERVICE.delete(boardId);
                 STEP_2_VIEW.deleteBoard(boardId, result);
             }
-            case view -> {
+            case VIEW -> {
                 Long boardId = StringUtils.parseLong(request.getUrl().getParameters().get(BOARD_ID_KEY));
                 List<PostDto> postsInBoard = STEP_2_BOARD_SERVICE.findAllByBoardId(boardId);
                 STEP_2_VIEW.printPostsInBoard(postsInBoard);
@@ -79,7 +79,7 @@ public class Step2Controller {
 
     private static void processPost(Request request) throws IOException {
         switch (request.getUrl().getFunction()) {
-            case add -> {
+            case ADD -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                     return;
                 }
@@ -91,7 +91,7 @@ public class Step2Controller {
                 PostDto postDto = STEP_2_VIEW.inputPostDto(boardId);
                 STEP_2_POST_SERVICE.add(boardId, postDto, request.getSession().getAccountId());
             }
-            case remove -> {
+            case REMOVE -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                     return;
                 }
@@ -99,7 +99,7 @@ public class Step2Controller {
                 boolean result = STEP_2_POST_SERVICE.remove(postId);
                 STEP_2_VIEW.deletePost(postId, result);
             }
-            case edit -> {
+            case EDIT -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                     return;
                 }
@@ -111,7 +111,7 @@ public class Step2Controller {
                 PostDto postDto = STEP_2_VIEW.updatePostDto();
                 STEP_2_POST_SERVICE.edit(postId, postDto);
             }
-            case view -> {
+            case VIEW -> {
                 Long postId = StringUtils.parseLong(request.getUrl().getParameters().get("postId"));
                 Optional<PostDto> postDto = STEP_2_POST_SERVICE.view(postId);
                 STEP_2_VIEW.printPost(postId, postDto);
@@ -122,14 +122,14 @@ public class Step2Controller {
 
     private static void processAccount(Request request) throws IOException {
         switch (request.getUrl().getFunction()) {
-            case signup -> {
+            case SIGN_UP -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.VISITOR)) {
                     return;
                 }
                 step.two_three.domain.AccountDto accountDto = STEP_2_VIEW.inputAccountDto();
                 STEP_2_ACCOUNT_SERVICE.signup(accountDto);
             }
-            case signin -> {
+            case SIGN_IN -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.VISITOR)) {
                     return;
                 }
@@ -137,18 +137,18 @@ public class Step2Controller {
                 request.setSession(STEP_2_ACCOUNT_SERVICE.signIn(request.getSession(), loginForm));
                 STEP_2_VIEW.login(request.getSession());
             }
-            case signout -> {
+            case SIGN_OUT -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                     return;
                 }
                 request.setSession(STEP_2_VIEW.signOut(request.getSession()));
             }
-            case detail -> {
+            case DETAIL -> {
                 Long accountId = StringUtils.parseLong(request.getUrl().getParameters().get(ACCOUNT_ID_KEY));
                 Optional<step.two_three.domain.AccountDto> accountDto = STEP_2_ACCOUNT_SERVICE.detail(accountId);
                 STEP_2_VIEW.detail(accountId, accountDto);
             }
-            case edit -> {
+            case EDIT -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                     return;
                 }
@@ -161,7 +161,7 @@ public class Step2Controller {
                 boolean editResult = STEP_2_ACCOUNT_SERVICE.edit(accountId, updateAccount);
                 STEP_2_VIEW.updateAccount(accountId, editResult);
             }
-            case remove -> {
+            case REMOVE -> {
                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                     return;
                 }
