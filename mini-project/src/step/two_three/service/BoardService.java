@@ -1,7 +1,7 @@
-package step.twoAndThree.service;
+package step.two_three.service;
 
-import step.twoAndThree.domain.BoardDto;
-import step.twoAndThree.domain.PostDto;
+import step.two_three.domain.BoardDto;
+import step.two_three.domain.PostDto;
 
 import java.util.List;
 import java.util.Optional;

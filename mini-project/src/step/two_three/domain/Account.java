@@ -1,32 +1,28 @@
-package step.twoAndThree.domain;
+package step.two_three.domain;
 
 import java.time.LocalDateTime;
 
-public class AccountDto {
+public class Account extends BaseEntity {
+    private Long accountId;
     private String id;
     private String pw;
     private String name;
     private String nickname;
     private String email;
-    private LocalDateTime createAt;
+    private Role role;
 
-    public AccountDto(String id, String pw, String name, String nickname, String email) {
+    public Account(Long accountId, String id, String pw, String name, String nickname, String email, Role role) {
+        this.accountId = accountId;
         this.id = id;
         this.pw = pw;
         this.name = name;
         this.nickname = nickname;
         this.email = email;
+        this.role = role;
     }
 
-    public AccountDto(String pw, String email) {
-        this.pw = pw;
-        this.email = email;
-    }
-
-    public AccountDto(String id, String email, LocalDateTime createAt) {
-        this.id = id;
-        this.email = email;
-        this.createAt = createAt;
+    public Long getAccountId() {
+        return accountId;
     }
 
     public String getId() {
@@ -49,7 +45,13 @@ public class AccountDto {
         return email;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public Role getRole() {
+        return role;
+    }
+
+    public void update(AccountDto accountDto) {
+        this.pw = accountDto.getPw();
+        this.email = accountDto.getEmail();
+        setUpdatedAt(LocalDateTime.now());
     }
 }

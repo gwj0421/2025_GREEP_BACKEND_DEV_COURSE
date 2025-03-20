@@ -1,4 +1,4 @@
-package step.twoAndThree.domain;
+package step.two_three.domain;
 
 import java.util.Map;
 

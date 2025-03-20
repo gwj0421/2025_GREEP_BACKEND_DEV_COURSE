@@ -1,4 +1,4 @@
-package step.twoAndThree.domain;
+package step.two_three.domain;
 
 public class LoginForm {
     private String id;
