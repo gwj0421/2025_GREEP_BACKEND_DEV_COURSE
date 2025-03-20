@@ -1,8 +1,6 @@
 package step2.service;
 
-import step2.domain.AccountDto;
-import step2.domain.LoginForm;
-import step2.domain.Session;
+import step2.domain.*;
 
 import java.util.Optional;
 
@@ -18,4 +16,6 @@ public interface AccountService {
     boolean edit(Long accountId,AccountDto accountDto);
 
     boolean remove(Long accountId);
+
+    boolean authenticate(Request request, Role role);
 }

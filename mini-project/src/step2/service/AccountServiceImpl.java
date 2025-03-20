@@ -1,9 +1,6 @@
 package step2.service;
 
-import step2.domain.AccountDto;
-import step2.domain.LoginForm;
-import step2.domain.Session;
-import step2.domain.Role;
+import step2.domain.*;
 import step2.repository.AccountRepository;
 
 import java.util.Optional;
@@ -50,5 +47,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean remove(Long accountId) {
         return accountRepository.delete(accountId);
+    }
+
+    @Override
+    public boolean authenticate(Request request, Role role) {
+        return request.getSession().getRole().equals(role);
     }
 }
