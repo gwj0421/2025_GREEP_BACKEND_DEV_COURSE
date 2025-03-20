@@ -1,6 +1,6 @@
-package step2.repository;
+package step2And3.repository;
 
-import step2.domain.*;
+import step2And3.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;

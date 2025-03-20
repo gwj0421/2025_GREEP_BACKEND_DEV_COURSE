@@ -1,7 +1,7 @@
-package step2.service;
+package step2And3.service;
 
-import step2.domain.*;
-import step2.repository.AccountRepository;
+import step2And3.domain.*;
+import step2And3.repository.AccountRepository;
 
 import java.util.Optional;
 

@@ -1,9 +1,9 @@
-package step2.service;
+package step2And3.service;
 
-import step2.domain.BoardDto;
-import step2.domain.PostDto;
-import step2.repository.BoardRepository;
-import step2.repository.PostRepository;
+import step2And3.domain.BoardDto;
+import step2And3.domain.PostDto;
+import step2And3.repository.BoardRepository;
+import step2And3.repository.PostRepository;
 
 import java.util.List;
 import java.util.Optional;

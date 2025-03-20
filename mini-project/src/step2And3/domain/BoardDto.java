@@ -1,4 +1,4 @@
-package step2.domain;
+package step2And3.domain;
 
 public class BoardDto {
     private String name;

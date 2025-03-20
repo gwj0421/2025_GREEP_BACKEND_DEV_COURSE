@@ -1,7 +1,7 @@
 package base.utils;
 
 import base.exception.IncorrectInputException;
-import step2.domain.Url;
+import step2And3.domain.Url;
 
 import java.util.Collections;
 import java.util.HashMap;

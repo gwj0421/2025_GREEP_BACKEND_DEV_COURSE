@@ -1,7 +1,7 @@
-package step2.repository;
+package step2And3.repository;
 
-import step2.domain.Post;
-import step2.domain.PostDto;
+import step2And3.domain.Post;
+import step2And3.domain.PostDto;
 
 import java.util.ArrayList;
 import java.util.List;

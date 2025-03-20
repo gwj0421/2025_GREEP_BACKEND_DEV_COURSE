@@ -1,4 +1,4 @@
-package step2.domain;
+package step2And3.domain;
 
 public enum Role {
     ADMIN("관리자"),

@@ -1,9 +1,9 @@
-package step2.controller;
+package step2And3.controller;
 
 import base.exception.IncorrectInputException;
 import base.utils.StringUtils;
 import base.utils.UrlUtils;
-import step2.domain.*;
+import step2And3.domain.*;
 
 import java.io.IOException;
 import java.util.List;

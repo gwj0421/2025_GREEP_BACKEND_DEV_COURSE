@@ -1,6 +1,6 @@
-package step2.service;
+package step2And3.service;
 
-import step2.domain.PostDto;
+import step2And3.domain.PostDto;
 
 import java.util.Optional;
 
