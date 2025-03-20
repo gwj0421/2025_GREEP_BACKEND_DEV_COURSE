@@ -1,9 +1,10 @@
-package step_2_3.controller;
+package step.twoAndThree.controller;
 
 import base.exception.IncorrectInputException;
 import base.utils.StringUtils;
 import base.utils.UrlUtils;
-import step_2_3.domain.*;
+import step.twoAndThree.domain.PostDto;
+import step.twoAndThree.domain.Role;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Step2Controller {
     }
 
     public static void run() {
-        Request request = new Request();
+        step.twoAndThree.domain.Request request = new step.twoAndThree.domain.Request();
 
         while (true) {
             try {
@@ -110,14 +111,14 @@ public class Step2Controller {
                                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.VISITOR)) {
                                     continue;
                                 }
-                                AccountDto accountDto = STEP_2_VIEW.inputAccountDto();
+                                step.twoAndThree.domain.AccountDto accountDto = STEP_2_VIEW.inputAccountDto();
                                 STEP_2_ACCOUNT_SERVICE.signup(accountDto);
                             }
                             case "signin" -> {
                                 if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.VISITOR)) {
                                     continue;
                                 }
-                                LoginForm loginForm = STEP_2_VIEW.inputLoginForm();
+                                step.twoAndThree.domain.LoginForm loginForm = STEP_2_VIEW.inputLoginForm();
                                 request.setSession(STEP_2_ACCOUNT_SERVICE.signIn(request.getSession(), loginForm));
                                 STEP_2_VIEW.login(request.getSession());
                             }
@@ -129,7 +130,7 @@ public class Step2Controller {
                             }
                             case "detail" -> {
                                 Long accountId = StringUtils.parseLong(request.getUrl().getParameters().get("accountId"));
-                                Optional<AccountDto> accountDto = STEP_2_ACCOUNT_SERVICE.detail(accountId);
+                                Optional<step.twoAndThree.domain.AccountDto> accountDto = STEP_2_ACCOUNT_SERVICE.detail(accountId);
                                 STEP_2_VIEW.detail(accountId, accountDto);
                             }
                             case "edit" -> {
@@ -141,7 +142,7 @@ public class Step2Controller {
                                 if (!STEP_2_VIEW.checkAccount(accountId, existResult)) {
                                     continue;
                                 }
-                                AccountDto updateAccount = STEP_2_VIEW.inputUpdateAccount();
+                                step.twoAndThree.domain.AccountDto updateAccount = STEP_2_VIEW.inputUpdateAccount();
                                 boolean editResult = STEP_2_ACCOUNT_SERVICE.edit(accountId, updateAccount);
                                 STEP_2_VIEW.updateAccount(accountId, editResult);
                             }

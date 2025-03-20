@@ -1,27 +1,27 @@
-package step_2_3.domain;
+package step.twoAndThree.domain;
 
 public class Request {
-    private Url url;
-    private Session session;
+    private step.twoAndThree.domain.Url url;
+    private step.twoAndThree.domain.Session session;
 
     public Request() {
-        this.url = new Url();
-        this.session = new Session();
+        this.url = new step.twoAndThree.domain.Url();
+        this.session = new step.twoAndThree.domain.Session();
     }
 
-    public Url getUrl() {
+    public step.twoAndThree.domain.Url getUrl() {
         return url;
     }
 
-    public Session getSession() {
+    public step.twoAndThree.domain.Session getSession() {
         return session;
     }
 
-    public void setSession(Session session) {
+    public void setSession(step.twoAndThree.domain.Session session) {
         this.session = session;
     }
 
-    public void setUrl(Url url) {
+    public void setUrl(step.twoAndThree.domain.Url url) {
         this.url = url;
     }
 }

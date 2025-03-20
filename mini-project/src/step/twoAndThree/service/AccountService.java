@@ -1,6 +1,6 @@
-package step_2_3.service;
+package step.twoAndThree.service;
 
-import step_2_3.domain.*;
+import step.twoAndThree.domain.*;
 
 import java.util.Optional;
 

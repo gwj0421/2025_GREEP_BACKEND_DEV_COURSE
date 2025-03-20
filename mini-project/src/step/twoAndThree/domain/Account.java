@@ -1,8 +1,8 @@
-package step_2_3.domain;
+package step.twoAndThree.domain;
 
 import java.time.LocalDateTime;
 
-public class Account extends BaseEntity{
+public class Account extends BaseEntity {
     private Long accountId;
     private String id;
     private String pw;

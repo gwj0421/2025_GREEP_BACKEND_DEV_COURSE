@@ -1,11 +1,11 @@
-package step_2_3.service;
+package step.twoAndThree.service;
 
-import step_2_3.domain.PostDto;
+import step.twoAndThree.domain.PostDto;
 
 import java.util.Optional;
 
 public interface PostService {
-    void add(Long boardId, PostDto postDto,Long accountId);
+    void add(Long boardId, PostDto postDto, Long accountId);
 
     boolean edit(Long postId,PostDto postDto);
 

@@ -1,7 +1,7 @@
-package step_2_3.service;
+package step.twoAndThree.service;
 
-import step_2_3.domain.*;
-import step_2_3.repository.AccountRepository;
+import step.twoAndThree.domain.*;
+import step.twoAndThree.repository.AccountRepository;
 
 import java.util.Optional;
 

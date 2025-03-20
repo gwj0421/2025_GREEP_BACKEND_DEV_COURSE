@@ -1,7 +1,7 @@
-package step_2_3.repository;
+package step.twoAndThree.repository;
 
-import step_2_3.domain.Post;
-import step_2_3.domain.PostDto;
+import step.twoAndThree.domain.Post;
+import step.twoAndThree.domain.PostDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class PostRepository {
         this.primaryKey = 0L;
     }
 
-    public void create(Long boardId, PostDto postDto,Long accountId) {
+    public void create(Long boardId, PostDto postDto, Long accountId) {
         repository.add(new Post(primaryKey++, postDto.getTitle(), postDto.getContent(), boardId, accountId));
     }
 

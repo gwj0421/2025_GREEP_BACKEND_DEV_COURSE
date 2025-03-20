@@ -1,8 +1,8 @@
-package step_2_3.view;
+package step.twoAndThree.view;
 
 import base.message.CustomMessage;
 import base.utils.StringUtils;
-import step_2_3.domain.*;
+import step.twoAndThree.domain.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

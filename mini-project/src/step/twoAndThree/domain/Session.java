@@ -1,4 +1,4 @@
-package step_2_3.domain;
+package step.twoAndThree.domain;
 
 public class Session {
     private Long accountId;

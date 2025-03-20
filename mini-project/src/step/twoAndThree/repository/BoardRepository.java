@@ -1,7 +1,8 @@
-package step_2_3.repository;
+package step.twoAndThree.repository;
 
-import step_2_3.domain.Board;
-import step_2_3.domain.BoardDto;
+
+import step.twoAndThree.domain.Board;
+import step.twoAndThree.domain.BoardDto;
 
 import java.util.ArrayList;
 import java.util.List;
