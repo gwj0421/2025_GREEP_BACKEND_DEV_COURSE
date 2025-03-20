@@ -1,6 +1,8 @@
 package base.utils;
 
 import base.exception.IncorrectInputException;
+import step.two_three.domain.Category;
+import step.two_three.domain.Function;
 import step.two_three.domain.Url;
 
 import java.util.Collections;
@@ -8,6 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UrlUtils {
+    public static final String BOARD_ID_KEY = "boardId";
+    public static final String POST_ID_KEY = "postId";
+    public static final String ACCOUNT_ID_KEY = "accountId";
+
     private UrlUtils() {
     }
 
@@ -25,7 +31,7 @@ public class UrlUtils {
             throw new IncorrectInputException();
         }
         if (parts.length == 1) {
-            return new Url(detailPath[1], detailPath[2], Collections.emptyMap());
+            return new Url(Category.getCategory(detailPath[1]), Function.getFunction(detailPath[2]), Collections.emptyMap());
         }
 
         Map<String, String> parameters = new HashMap<>();
@@ -37,7 +43,7 @@ public class UrlUtils {
             parameters.put(parameter[0], parameter[1]);
         }
 
-        return new Url(detailPath[1], detailPath[2], parameters);
+        return new Url(Category.getCategory(detailPath[1]), Function.getFunction(detailPath[2]), parameters);
     }
 
 }

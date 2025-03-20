@@ -3,24 +3,25 @@ package step.two_three.domain;
 import java.util.Map;
 
 public class Url {
-    private String category;
-    private String function;
+    private Category category;
+    private Function function;
     private Map<String, String> parameters;
 
     public Url() {
     }
 
-    public Url(String category, String function, Map<String, String> parameters) {
+
+    public Url(Category category, Function function, Map<String, String> parameters) {
         this.category = category;
         this.function = function;
         this.parameters = parameters;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public String getFunction() {
+    public Function getFunction() {
         return function;
     }
 
