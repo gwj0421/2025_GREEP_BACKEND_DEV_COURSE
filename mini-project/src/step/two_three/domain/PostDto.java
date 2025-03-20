@@ -41,6 +41,10 @@ public class PostDto {
         return content;
     }
 
+    public Long getBoardId() {
+        return boardId;
+    }
+
     public LocalDateTime getCreateAt() {
         return createAt;
     }

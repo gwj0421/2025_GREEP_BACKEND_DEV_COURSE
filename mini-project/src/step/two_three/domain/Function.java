@@ -1,22 +1,31 @@
 package step.two_three.domain;
 
-import base.exception.IncorrectInputException;
-
 public enum Function {
-    add,
-    edit,
-    remove,
-    view,
-    signup,
-    signin,
-    signout,
-    detail;
+    ADD("add"),
+    EDIT("edit"),
+    REMOVE("remove"),
+    VIEW("view"),
+    SIGN_UP("signup"),
+    SIGN_IN("signin"),
+    SIGN_OUT("signout"),
+    DETAIL("detail"),
+    EMPTY("");
+    private String command;
+
+    Function(String command) {
+        this.command = command;
+    }
+
+    public String getCommand() {
+        return command;
+    }
 
     public static Function getFunction(String input) {
-        try {
-            return valueOf(input);
-        } catch (IllegalArgumentException e) {
-            throw new IncorrectInputException();
+        for (Function value : values()) {
+            if (value.getCommand().equals(input)) {
+                return value;
+            }
         }
+        return EMPTY;
     }
 }

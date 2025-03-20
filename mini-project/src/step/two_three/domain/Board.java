@@ -21,6 +21,10 @@ public class Board extends BaseEntity{
         return name;
     }
 
+    public Long getAccountId() {
+        return accountId;
+    }
+
     public void update(String name) {
         this.name = name;
         setUpdatedAt(LocalDateTime.now());

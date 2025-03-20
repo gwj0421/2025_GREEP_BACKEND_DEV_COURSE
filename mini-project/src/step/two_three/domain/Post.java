@@ -33,6 +33,10 @@ public class Post extends BaseEntity{
         return boardId;
     }
 
+    public Long getAccountId() {
+        return accountId;
+    }
+
     public void update(PostDto postDto) {
         this.title = postDto.getTitle();
         this.content = postDto.getContent();
