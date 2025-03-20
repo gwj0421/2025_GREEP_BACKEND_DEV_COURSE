@@ -26,7 +26,7 @@ public enum CustomMessage {
     FAIL_ACCOUNT("존재하지 않는 계정입니다. "),
 
     PREVIEW_UPDATE_POST("%d번 게시물을 수정합니다."),
-    PREVIEW_UPDATE_BOARD("%d번 게시판을 수정합니다."),
+    PREVIEW_UPDATE_BOARD("%d번 게시판을 수정/생성합니다."),
     PREVIEW_UPDATE_ACCOUNT("%d번 계정을 수정합니다. "),
     PREVIEW_TOTAL_POST_CNT("총 게시글은 %d개 작성되어있습니다. "),
 

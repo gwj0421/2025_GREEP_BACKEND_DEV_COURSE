@@ -48,11 +48,6 @@ public class Step2View {
         CustomMessage.FAIL_BOARD.printMessage(boardId);
     }
 
-    public String updateBoard(Long boardId) throws IOException {
-        CustomMessage.INPUT_TITLE.printMessage(false);
-        return br.readLine();
-    }
-
     public void deleteBoard(Long boardId, boolean result) {
         if (result) {
             CustomMessage.SUCCESS_DELETE_BOARD.printMessage(boardId);
@@ -64,7 +59,7 @@ public class Step2View {
     public void printPostsInBoard(List<PostDto> postsInBoard) {
         CustomMessage.TABLE_HEAD_ROW_IN_POST.printMessage(true);
         for (PostDto post : postsInBoard) {
-            CustomMessage.TABLE_DATA_ROW_IN_POST.printMessage(post.getTitle(), post.getContent(), post.getCreateAt());
+            CustomMessage.TABLE_DATA_ROW_IN_POST.printMessage(post.getTitle(), post.getContent(), StringUtils.toDate(post.getCreateAt()));
         }
     }
 
@@ -145,7 +140,7 @@ public class Step2View {
 
     public void detail(Long accountId, Optional<AccountDto> accountDto) {
         accountDto.ifPresentOrElse(
-                it -> CustomMessage.FORMAT_ACCOUNT.printMessage(accountId, it.getId(), it.getEmail(), StringUtils.toDate(it.getCreateAt())),
+                it -> CustomMessage.FORMAT_FULL_ACCOUNT.printMessage(accountId, it.getId(), it.getEmail(), StringUtils.toDate(it.getCreateAt())),
                 () -> CustomMessage.FAIL_ACCOUNT.printMessage(true)
         );
     }
