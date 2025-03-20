@@ -29,7 +29,7 @@ public class PostRepository {
 
     public Optional<Post> findById(Long postId) {
         for (int i = 0; i < repository.size(); i++) {
-            if (repository.get(i).getId() == postId) {
+            if (repository.get(i).getId().equals(postId)) {
                 return Optional.of(repository.get(i));
             }
         }
@@ -39,8 +39,7 @@ public class PostRepository {
     public boolean deleteById(Long postId) {
         Optional<Post> findPost = findById(postId);
         if (findPost.isPresent()) {
-            repository.remove(findPost);
-            return true;
+            return repository.remove(findPost.get());
         }
         return false;
     }
