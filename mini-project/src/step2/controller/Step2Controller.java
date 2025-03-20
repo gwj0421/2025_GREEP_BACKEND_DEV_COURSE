@@ -36,7 +36,7 @@ public class Step2Controller {
                                 if (!step2View.checkBoard(boardId, existResult)) {
                                     continue;
                                 }
-                                String boardName = step2View.updateBoard(boardId);
+                                String boardName = step2View.create();
                                 boolean result = step2BoardService.update(boardId, boardName);
                                 step2View.checkUpdateBoard(boardId, result);
                             }
@@ -57,6 +57,10 @@ public class Step2Controller {
                         switch (request.getUrl().getFunction()) {
                             case "add" -> {
                                 Long boardId = StringUtils.parseLong(request.getUrl().getParameters().get("boardId"));
+                                boolean existResult = step2BoardService.exist(boardId);
+                                if (!step2View.checkBoard(boardId, existResult)) {
+                                    continue;
+                                }
                                 PostDto postDto = step2View.inputPostDto(boardId);
                                 step2PostService.add(boardId, postDto, request.getSession().getAccountId());
                             }
