@@ -45,8 +45,7 @@ public class Step1View {
 
     public Long beforeRead() throws IOException {
         CustomMessage.QUEST_READ_POST.printMessage(true);
-        String input = br.readLine();
-        return Long.parseLong(input);
+        return StringUtils.parseLong(br.readLine());
     }
 
     public void afterRead(Long postId, Optional<PostDto> postDto) {
