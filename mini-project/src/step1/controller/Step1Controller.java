@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import static base.config.Config.step1PostService;
-import static base.config.Config.step1View;
+import static base.config.Config.STEP_1_POST_SERVICE;
+import static base.config.Config.STEP_1_VIEW;
 
 public class Step1Controller {
 
@@ -20,49 +20,49 @@ public class Step1Controller {
     public static void run() {
         while (true) {
             try {
-                String command = step1View.inputCommand();
+                String command = STEP_1_VIEW.inputCommand();
                 switch (command) {
-                    case "안녕하세요!" -> step1View.greeting();
+                    case "안녕하세요!" -> STEP_1_VIEW.greeting();
                     case "종료" -> {
-                        step1View.exit();
+                        STEP_1_VIEW.exit();
                         return;
                     }
                     case "작성" -> {
-                        PostDto postDto = step1View.create();
-                        step1PostService.create(postDto);
+                        PostDto postDto = STEP_1_VIEW.create();
+                        STEP_1_POST_SERVICE.create(postDto);
                     }
                     case "조회" -> {
-                        Long postId = step1View.beforeRead();
-                        Optional<PostDto> findPost = step1PostService.read(postId);
-                        step1View.afterRead(postId, findPost);
+                        Long postId = STEP_1_VIEW.beforeRead();
+                        Optional<PostDto> findPost = STEP_1_POST_SERVICE.read(postId);
+                        STEP_1_VIEW.afterRead(postId, findPost);
                     }
                     case "삭제" -> {
-                        Long postId = step1View.beforeDelete();
-                        boolean deleteResult = step1PostService.delete(postId);
-                        step1View.afterDelete(postId, deleteResult);
+                        Long postId = STEP_1_VIEW.beforeDelete();
+                        boolean deleteResult = STEP_1_POST_SERVICE.delete(postId);
+                        STEP_1_VIEW.afterDelete(postId, deleteResult);
                     }
                     case "수정" -> {
-                        Long postId = step1View.beforeUpdate();
-                        Optional<PostDto> findPost = step1PostService.read(postId);
-                        if (!step1View.checkUpdate(postId, findPost)) {
+                        Long postId = STEP_1_VIEW.beforeUpdate();
+                        Optional<PostDto> findPost = STEP_1_POST_SERVICE.read(postId);
+                        if (!STEP_1_VIEW.checkUpdate(postId, findPost)) {
                             continue;
                         }
-                        PostDto updatePost = step1View.inputUpdatedPost(postId);
-                        if (!step1PostService.update(postId, updatePost)) {
+                        PostDto updatePost = STEP_1_VIEW.inputUpdatedPost(postId);
+                        if (!STEP_1_POST_SERVICE.update(postId, updatePost)) {
                             continue;
                         }
-                        step1View.afterUpdate(postId);
+                        STEP_1_VIEW.afterUpdate(postId);
                     }
                     case "목록" -> {
-                        List<PostDto> posts = step1PostService.findAll();
-                        step1View.showAllPosts(posts);
+                        List<PostDto> posts = STEP_1_POST_SERVICE.findAll();
+                        STEP_1_VIEW.showAllPosts(posts);
                     }
                     default -> {
-                        step1View.showInvalidInput();
+                        STEP_1_VIEW.showInvalidInput();
                     }
                 }
             } catch (IncorrectInputException | IOException e) {
-                step1View.showInvalidInput();
+                STEP_1_VIEW.showInvalidInput();
             }
         }
     }

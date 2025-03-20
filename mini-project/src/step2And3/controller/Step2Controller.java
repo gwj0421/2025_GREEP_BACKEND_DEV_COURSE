@@ -21,145 +21,145 @@ public class Step2Controller {
 
         while (true) {
             try {
-                String originUrl = step2View.inputCommand();
+                String originUrl = STEP_2_VIEW.inputCommand();
                 request.setUrl(UrlUtils.makeUrl(originUrl));
                 switch (request.getUrl().getCategory()) {
                     case "boards" -> {
                         switch (request.getUrl().getFunction()) {
                             case "add" -> {
-                                if (!step2AccountService.authenticate(request, Role.ADMIN)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.ADMIN)) {
                                     continue;
                                 }
-                                String boardName = step2View.create();
-                                step2BoardService.create(boardName, request.getSession().getAccountId());
+                                String boardName = STEP_2_VIEW.create();
+                                STEP_2_BOARD_SERVICE.create(boardName, request.getSession().getAccountId());
                             }
                             case "edit" -> {
-                                if (!step2AccountService.authenticate(request, Role.ADMIN)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.ADMIN)) {
                                     continue;
                                 }
                                 Long boardId = StringUtils.parseLong(request.getUrl().getParameters().get("boardId"));
-                                boolean existResult = step2BoardService.exist(boardId);
-                                if (!step2View.checkBoard(boardId, existResult)) {
+                                boolean existResult = STEP_2_BOARD_SERVICE.exist(boardId);
+                                if (!STEP_2_VIEW.checkBoard(boardId, existResult)) {
                                     continue;
                                 }
-                                String boardName = step2View.create();
-                                boolean result = step2BoardService.update(boardId, boardName);
-                                step2View.checkUpdateBoard(boardId, result);
+                                String boardName = STEP_2_VIEW.create();
+                                boolean result = STEP_2_BOARD_SERVICE.update(boardId, boardName);
+                                STEP_2_VIEW.checkUpdateBoard(boardId, result);
                             }
                             case "remove" -> {
-                                if (!step2AccountService.authenticate(request, Role.ADMIN)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.ADMIN)) {
                                     continue;
                                 }
                                 Long boardId = StringUtils.parseLong(request.getUrl().getParameters().get("boardId"));
-                                boolean result = step2BoardService.delete(boardId);
-                                step2View.deleteBoard(boardId, result);
+                                boolean result = STEP_2_BOARD_SERVICE.delete(boardId);
+                                STEP_2_VIEW.deleteBoard(boardId, result);
                             }
                             case "view" -> {
                                 Long boardId = StringUtils.parseLong(request.getUrl().getParameters().get("boardId"));
-                                List<PostDto> postsInBoard = step2BoardService.findAllByBoardId(boardId);
-                                step2View.printPostsInBoard(postsInBoard);
+                                List<PostDto> postsInBoard = STEP_2_BOARD_SERVICE.findAllByBoardId(boardId);
+                                STEP_2_VIEW.printPostsInBoard(postsInBoard);
                             }
-                            default -> step2View.showInvalidInput();
+                            default -> STEP_2_VIEW.showInvalidInput();
                         }
                     }
                     case "posts" -> {
                         switch (request.getUrl().getFunction()) {
                             case "add" -> {
-                                if (!step2AccountService.authenticate(request, Role.USER)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                                     continue;
                                 }
                                 Long boardId = StringUtils.parseLong(request.getUrl().getParameters().get("boardId"));
-                                boolean existResult = step2BoardService.exist(boardId);
-                                if (!step2View.checkBoard(boardId, existResult)) {
+                                boolean existResult = STEP_2_BOARD_SERVICE.exist(boardId);
+                                if (!STEP_2_VIEW.checkBoard(boardId, existResult)) {
                                     continue;
                                 }
-                                PostDto postDto = step2View.inputPostDto(boardId);
-                                step2PostService.add(boardId, postDto, request.getSession().getAccountId());
+                                PostDto postDto = STEP_2_VIEW.inputPostDto(boardId);
+                                STEP_2_POST_SERVICE.add(boardId, postDto, request.getSession().getAccountId());
                             }
                             case "remove" -> {
-                                if (!step2AccountService.authenticate(request, Role.USER)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                                     continue;
                                 }
                                 Long postId = StringUtils.parseLong(request.getUrl().getParameters().get("postId"));
-                                boolean result = step2PostService.remove(postId);
-                                step2View.deletePost(postId, result);
+                                boolean result = STEP_2_POST_SERVICE.remove(postId);
+                                STEP_2_VIEW.deletePost(postId, result);
                             }
                             case "edit" -> {
-                                if (!step2AccountService.authenticate(request, Role.USER)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                                     continue;
                                 }
                                 Long postId = StringUtils.parseLong(request.getUrl().getParameters().get("postId"));
-                                boolean existResult = step2PostService.exist(postId);
-                                if (!step2View.checkPost(postId, existResult)) {
+                                boolean existResult = STEP_2_POST_SERVICE.exist(postId);
+                                if (!STEP_2_VIEW.checkPost(postId, existResult)) {
                                     continue;
                                 }
-                                PostDto postDto = step2View.updatePostDto();
-                                step2PostService.edit(postId, postDto);
+                                PostDto postDto = STEP_2_VIEW.updatePostDto();
+                                STEP_2_POST_SERVICE.edit(postId, postDto);
                             }
                             case "view" -> {
                                 Long postId = StringUtils.parseLong(request.getUrl().getParameters().get("postId"));
-                                Optional<PostDto> postDto = step2PostService.view(postId);
-                                step2View.printPost(postId, postDto);
+                                Optional<PostDto> postDto = STEP_2_POST_SERVICE.view(postId);
+                                STEP_2_VIEW.printPost(postId, postDto);
                             }
-                            default -> step2View.showInvalidInput();
+                            default -> STEP_2_VIEW.showInvalidInput();
                         }
                     }
                     case "accounts" -> {
                         switch (request.getUrl().getFunction()) {
                             case "signup" -> {
-                                if (!step2AccountService.authenticate(request, Role.VISITOR)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.VISITOR)) {
                                     continue;
                                 }
-                                AccountDto accountDto = step2View.inputAccountDto();
-                                step2AccountService.signup(accountDto);
+                                AccountDto accountDto = STEP_2_VIEW.inputAccountDto();
+                                STEP_2_ACCOUNT_SERVICE.signup(accountDto);
                             }
                             case "signin" -> {
-                                if (!step2AccountService.authenticate(request, Role.VISITOR)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.VISITOR)) {
                                     continue;
                                 }
-                                LoginForm loginForm = step2View.inputLoginForm();
-                                request.setSession(step2AccountService.signIn(request.getSession(), loginForm));
-                                step2View.login(request.getSession());
+                                LoginForm loginForm = STEP_2_VIEW.inputLoginForm();
+                                request.setSession(STEP_2_ACCOUNT_SERVICE.signIn(request.getSession(), loginForm));
+                                STEP_2_VIEW.login(request.getSession());
                             }
                             case "signout" -> {
-                                if (!step2AccountService.authenticate(request, Role.USER)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                                     continue;
                                 }
-                                request.setSession(step2View.signOut(request.getSession()));
+                                request.setSession(STEP_2_VIEW.signOut(request.getSession()));
                             }
                             case "detail" -> {
                                 Long accountId = StringUtils.parseLong(request.getUrl().getParameters().get("accountId"));
-                                Optional<AccountDto> accountDto = step2AccountService.detail(accountId);
-                                step2View.detail(accountId, accountDto);
+                                Optional<AccountDto> accountDto = STEP_2_ACCOUNT_SERVICE.detail(accountId);
+                                STEP_2_VIEW.detail(accountId, accountDto);
                             }
                             case "edit" -> {
-                                if (!step2AccountService.authenticate(request, Role.USER)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                                     continue;
                                 }
                                 Long accountId = StringUtils.parseLong(request.getUrl().getParameters().get("accountId"));
-                                boolean existResult = step2AccountService.exist(accountId);
-                                if (!step2View.checkAccount(accountId, existResult)) {
+                                boolean existResult = STEP_2_ACCOUNT_SERVICE.exist(accountId);
+                                if (!STEP_2_VIEW.checkAccount(accountId, existResult)) {
                                     continue;
                                 }
-                                AccountDto updateAccount = step2View.inputUpdateAccount();
-                                boolean editResult = step2AccountService.edit(accountId, updateAccount);
-                                step2View.updateAccount(accountId, editResult);
+                                AccountDto updateAccount = STEP_2_VIEW.inputUpdateAccount();
+                                boolean editResult = STEP_2_ACCOUNT_SERVICE.edit(accountId, updateAccount);
+                                STEP_2_VIEW.updateAccount(accountId, editResult);
                             }
                             case "remove" -> {
-                                if (!step2AccountService.authenticate(request, Role.USER)) {
+                                if (!STEP_2_ACCOUNT_SERVICE.authenticate(request, Role.USER)) {
                                     continue;
                                 }
                                 Long accountId = StringUtils.parseLong(request.getUrl().getParameters().get("accountId"));
-                                boolean removeResult = step2AccountService.remove(accountId);
-                                step2View.deleteAccount(accountId, removeResult);
+                                boolean removeResult = STEP_2_ACCOUNT_SERVICE.remove(accountId);
+                                STEP_2_VIEW.deleteAccount(accountId, removeResult);
                             }
-                            default -> step2View.showInvalidInput();
+                            default -> STEP_2_VIEW.showInvalidInput();
                         }
                     }
-                    default -> step2View.showInvalidInput();
+                    default -> STEP_2_VIEW.showInvalidInput();
                 }
             } catch (IncorrectInputException | IOException e) {
-                step2View.showInvalidInput();
+                STEP_2_VIEW.showInvalidInput();
             }
         }
     }

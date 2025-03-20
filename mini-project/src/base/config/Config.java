@@ -13,15 +13,18 @@ import step2And3.service.BoardServiceImpl;
 import step2And3.view.Step2View;
 
 public class Config {
-    public static Step1View step1View = new Step1View();
-    public static PostRepository step1PostRepository = new PostRepository();
-    public static PostService step1PostService = new PostServiceImpl(step1PostRepository);
+    private Config() {
+    }
 
-    public static Step2View step2View = new Step2View();
-    public static BoardRepository step2BoardRepository = new BoardRepository();
-    public static step2And3.repository.PostRepository step2PostRepository = new step2And3.repository.PostRepository();
-    public static BoardService step2BoardService = new BoardServiceImpl(step2BoardRepository, step2PostRepository);
-    public static step2And3.service.PostService step2PostService = new step2And3.service.PostServiceImpl(step2PostRepository);
-    public static AccountRepository step2AccountRepository = new AccountRepository();
-    public static AccountService step2AccountService = new AccountServiceImpl(step2AccountRepository);
+    public static final Step1View STEP_1_VIEW = new Step1View();
+    public static final PostRepository STEP_1_POST_REPOSITORY = new PostRepository();
+    public static final PostService STEP_1_POST_SERVICE = new PostServiceImpl(STEP_1_POST_REPOSITORY);
+
+    public static final Step2View STEP_2_VIEW = new Step2View();
+    public static final BoardRepository STEP_2_BOARD_REPOSITORY = new BoardRepository();
+    public static final step2And3.repository.PostRepository STEP_2_POST_REPOSITORY = new step2And3.repository.PostRepository();
+    public static final BoardService STEP_2_BOARD_SERVICE = new BoardServiceImpl(STEP_2_BOARD_REPOSITORY, STEP_2_POST_REPOSITORY);
+    public static final step2And3.service.PostService STEP_2_POST_SERVICE = new step2And3.service.PostServiceImpl(STEP_2_POST_REPOSITORY);
+    public static final AccountRepository STEP_2_ACCOUNT_REPOSITORY = new AccountRepository();
+    public static final AccountService STEP_2_ACCOUNT_SERVICE = new AccountServiceImpl(STEP_2_ACCOUNT_REPOSITORY);
 }
