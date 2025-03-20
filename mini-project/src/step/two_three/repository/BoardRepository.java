@@ -34,8 +34,8 @@ public class BoardRepository {
         for (int i = 0; i < repository.size(); i++) {
             if (repository.get(i).getBoardId() == boardId) {
                 repository.get(i).update(boardName);
+                return true;
             }
-            return true;
         }
         return false;
     }
