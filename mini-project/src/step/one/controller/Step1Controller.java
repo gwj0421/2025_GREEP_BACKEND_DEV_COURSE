@@ -44,26 +44,28 @@ public class Step1Controller {
                     case "수정" -> {
                         Long postId = STEP_1_VIEW.beforeUpdate();
                         Optional<PostDto> findPost = STEP_1_POST_SERVICE.read(postId);
-                        if (!STEP_1_VIEW.checkUpdate(postId, findPost)) {
-                            continue;
-                        }
-                        PostDto updatePost = STEP_1_VIEW.inputUpdatedPost(postId);
-                        if (!STEP_1_POST_SERVICE.update(postId, updatePost)) {
-                            continue;
-                        }
-                        STEP_1_VIEW.afterUpdate(postId);
+                        processUpdatePost(postId, findPost);
                     }
                     case "목록" -> {
                         List<PostDto> posts = STEP_1_POST_SERVICE.findAll();
                         STEP_1_VIEW.showAllPosts(posts);
                     }
-                    default -> {
-                        STEP_1_VIEW.showInvalidInput();
-                    }
+                    default -> STEP_1_VIEW.showInvalidInput();
                 }
             } catch (IncorrectInputException | IOException e) {
                 STEP_1_VIEW.showInvalidInput();
             }
         }
+    }
+
+    private static void processUpdatePost(Long postId, Optional<PostDto> findPost) throws IOException {
+        if (!STEP_1_VIEW.checkUpdate(postId, findPost)) {
+            return;
+        }
+        PostDto updatePost = STEP_1_VIEW.inputUpdatedPost(postId);
+        if (!STEP_1_POST_SERVICE.update(postId, updatePost)) {
+            return;
+        }
+        STEP_1_VIEW.afterUpdate(postId);
     }
 }
