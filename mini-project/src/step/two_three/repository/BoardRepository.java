@@ -23,7 +23,7 @@ public class BoardRepository {
 
     public Optional<BoardDto> read(Long boardId) {
         for (Board board : repository) {
-            if (board.getBoardId() == boardId) {
+            if (board.getBoardId().equals(boardId)) {
                 return Optional.of(new BoardDto(board.getName()));
             }
         }
@@ -32,7 +32,7 @@ public class BoardRepository {
 
     public boolean update(Long boardId, String boardName) {
         for (int i = 0; i < repository.size(); i++) {
-            if (repository.get(i).getBoardId() == boardId) {
+            if (repository.get(i).getBoardId().equals(boardId)) {
                 repository.get(i).update(boardName);
                 return true;
             }
@@ -42,7 +42,7 @@ public class BoardRepository {
 
     public boolean delete(Long boardId) {
         for (int i = 0; i < repository.size(); i++) {
-            if (repository.get(i).getBoardId() == boardId) {
+            if (repository.get(i).getBoardId().equals(boardId)) {
                 repository.remove(i);
                 return true;
             }
@@ -52,7 +52,7 @@ public class BoardRepository {
 
     public boolean exist(Long boardId) {
         for (Board board : repository) {
-            if (board.getBoardId() == boardId) {
+            if (board.getBoardId().equals(boardId)) {
                 return true;
             }
         }

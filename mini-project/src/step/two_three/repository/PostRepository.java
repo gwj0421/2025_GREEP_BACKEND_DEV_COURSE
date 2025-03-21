@@ -22,7 +22,7 @@ public class PostRepository {
 
     public Optional<PostDto> read(Long postId) {
         for (Post post : repository) {
-            if (post.getPostId() == postId) {
+            if (post.getPostId().equals(postId)) {
                 return Optional.of(
                         PostDto.PostDtoBuilder.builder()
                                 .title(post.getTitle())
@@ -37,7 +37,7 @@ public class PostRepository {
 
     public boolean update(Long postId, PostDto postDto) {
         for (Post post : repository) {
-            if (post.getPostId() == postId) {
+            if (post.getPostId().equals(postId)) {
                 post.update(postDto);
                 return true;
             }
@@ -47,7 +47,7 @@ public class PostRepository {
 
     public boolean delete(Long postId) {
         for (Post post : repository) {
-            if (post.getPostId() == postId) {
+            if (post.getPostId().equals(postId)) {
                 repository.remove(post);
                 return true;
             }
@@ -57,7 +57,7 @@ public class PostRepository {
 
     public boolean exist(Long postId) {
         for (Post post : repository) {
-            if (post.getPostId() == postId) {
+            if (post.getPostId().equals(postId)) {
                 return true;
             }
         }
@@ -67,7 +67,7 @@ public class PostRepository {
     public List<PostDto> findByBoardId(Long boardId) {
         List<PostDto> posts = new ArrayList<>();
         for (Post post : repository) {
-            if (post.getBoardId() == boardId) {
+            if (post.getBoardId().equals(boardId)) {
                 posts.add(PostDto.PostDtoBuilder.builder().title(post.getTitle()).content(post.getContent()).createAt(post.getCreatedAt()).build());
             }
         }

@@ -32,7 +32,7 @@ public class AccountRepository {
 
     public Optional<AccountDto> read(Long accountId) {
         for (Account account : repository) {
-            if (account.getAccountId() == accountId) {
+            if (account.getAccountId().equals(accountId)) {
                 return Optional.of(
                         AccountDtoBuilder.builder()
                                 .id(account.getId())
@@ -47,7 +47,7 @@ public class AccountRepository {
 
     public boolean update(Long accountId, AccountDto accountDto) {
         for (Account account : repository) {
-            if (account.getAccountId() == accountId) {
+            if (account.getAccountId().equals(accountId)) {
                 account.update(accountDto);
                 return true;
             }
@@ -57,7 +57,7 @@ public class AccountRepository {
 
     public boolean exist(Long accountId) {
         for (Account account : repository) {
-            if (account.getAccountId() == accountId) {
+            if (account.getAccountId().equals(accountId)) {
                 return true;
             }
         }
@@ -66,7 +66,7 @@ public class AccountRepository {
 
     public boolean delete(Long accountId) {
         for (Account account : repository) {
-            if (account.getAccountId() == accountId) {
+            if (account.getAccountId().equals(accountId)) {
                 repository.remove(account);
                 return true;
             }
