@@ -24,7 +24,8 @@ public class Step1View {
     }
 
     public String inputCommand() throws IOException {
-        return StringUtils.trimPrefix(br.readLine(), PREFIX_COMMAND);
+        System.out.print(PREFIX_COMMAND);
+        return br.readLine();
     }
 
     public void greeting() {
