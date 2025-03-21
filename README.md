@@ -1,17 +1,15 @@
 # 2025_GREEP_BACKEND_DEV_COURSE
 
-# Troubleshooting
-<details>
+## [BE7] 웹 백엔드 5기
 
-<summary>AssertJ 호환 문제</summary>
-문제 : gradle/maven없이 AssertJ와 같은 외부 라이브러리 사용에 차질
-<br>
-해결 : Assertj jar파일을 직접 넣어 외부 라이브러리 활성화 진행
-</details>
-<details>
-<summary>Url 리팩토링</summary>
-문제 : Url 특성상 [ /구분/기능?파라미터... ] 구조로 되어있고 구분만 값이 존재할 수있고 구분과 기능만 값이 존재할 경우가 있어 오버로딩으로 구현하면 불필요한 코드가 생김
-<br>
-해결 : 빌더 패턴 활용
-</details>
+- 과정명: 프로그래머스 데브코스: 클라우드 기반 (백엔드) 엔지니어링
+- 기수/ 회차: 5기 / 7회차
+- 교육 기간:  2025-02-28 ~ 2025-08-04
+- 교육 요일 /시간: 월~금 / 09:00~18:00 (일부 19시 종료 있음)
+- LMS : https://instructor.school.programmers.co.kr/app/courses/24972/dashboard
 
+## 프로젝트 현황
+
+| 프로젝트 이름 | 팀원 | 기간 |
+| --- | --- | --- |
+| 미니 프로젝트 | 개인 | 25/03/19 - 25/03/21 |
