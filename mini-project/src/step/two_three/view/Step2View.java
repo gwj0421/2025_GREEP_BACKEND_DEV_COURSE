@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Optional;
 
+import static step.two_three.domain.AccountDto.*;
+
 public class Step2View {
     private static final String PREFIX_COMMAND = "a ";
     private BufferedReader br;
@@ -78,7 +80,7 @@ public class Step2View {
         String title = br.readLine();
         CustomMessage.INPUT_CONTENT.printMessage(false);
         String content = StringUtils.toContent(br);
-        return new PostDto(title, content, boardId);
+        return PostDto.PostDtoBuilder.builder().title(title).content(content).boardId(boardId).build();
     }
 
     public void deletePost(Long postId, boolean result) {
@@ -94,14 +96,11 @@ public class Step2View {
         String title = br.readLine();
         CustomMessage.INPUT_CONTENT.printMessage(false);
         String content = StringUtils.toContent(br);
-        return new PostDto(title, content);
+        return PostDto.PostDtoBuilder.builder().title(title).content(content).build();
     }
 
     public void printPost(Long postId, Optional<PostDto> postDto) {
-        postDto.ifPresentOrElse(
-                it -> CustomMessage.FORMAT_FULL_POST.printMessage(postId, StringUtils.toDate(it.getCreateAt()), StringUtils.toDate(it.getUpdatedAt()), it.getTitle(), it.getContent()),
-                () -> CustomMessage.FAIL_POST.printMessage(postId)
-        );
+        postDto.ifPresentOrElse(it -> CustomMessage.FORMAT_FULL_POST.printMessage(postId, StringUtils.toDate(it.getCreateAt()), StringUtils.toDate(it.getUpdatedAt()), it.getTitle(), it.getContent()), () -> CustomMessage.FAIL_POST.printMessage(postId));
     }
 
     public AccountDto inputAccountDto() throws IOException {
@@ -115,7 +114,7 @@ public class Step2View {
         String nickname = br.readLine();
         CustomMessage.INPUT_EMAIL.printMessage(false);
         String email = br.readLine();
-        return new AccountDto(id, pw, name, nickname, email);
+        return AccountDtoBuilder.builder().id(id).pw(pw).name(name).nickname(nickname).email(email).build();
     }
 
     public LoginForm inputLoginForm() throws IOException {
@@ -140,10 +139,7 @@ public class Step2View {
     }
 
     public void detail(Long accountId, Optional<AccountDto> accountDto) {
-        accountDto.ifPresentOrElse(
-                it -> CustomMessage.FORMAT_FULL_ACCOUNT.printMessage(accountId, it.getId(), it.getEmail(), StringUtils.toDate(it.getCreateAt())),
-                () -> CustomMessage.FAIL_ACCOUNT.printMessage(true)
-        );
+        accountDto.ifPresentOrElse(it -> CustomMessage.FORMAT_FULL_ACCOUNT.printMessage(accountId, it.getId(), it.getEmail(), StringUtils.toDate(it.getCreateAt())), () -> CustomMessage.FAIL_ACCOUNT.printMessage(true));
     }
 
     public boolean checkAccount(Long accountId, boolean existResult) {
@@ -160,7 +156,7 @@ public class Step2View {
         String pw = br.readLine();
         CustomMessage.INPUT_EMAIL.printMessage(false);
         String email = br.readLine();
-        return new AccountDto(pw, email);
+        return AccountDtoBuilder.builder().pw(pw).email(email).build();
     }
 
     public void updateAccount(Long accountId, boolean editResult) {

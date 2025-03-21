@@ -23,7 +23,13 @@ public class PostRepository {
     public Optional<PostDto> read(Long postId) {
         for (Post post : repository) {
             if (post.getPostId() == postId) {
-                return Optional.of(new PostDto(post.getTitle(), post.getContent(), post.getCreatedAt()));
+                return Optional.of(
+                        PostDto.PostDtoBuilder.builder()
+                                .title(post.getTitle())
+                                .content(post.getContent())
+                                .createAt(post.getCreatedAt())
+                                .build()
+                );
             }
         }
         return Optional.empty();
@@ -62,7 +68,7 @@ public class PostRepository {
         List<PostDto> posts = new ArrayList<>();
         for (Post post : repository) {
             if (post.getBoardId() == boardId) {
-                posts.add(new PostDto(post.getTitle(), post.getContent(), post.getCreatedAt()));
+                posts.add(PostDto.PostDtoBuilder.builder().title(post.getTitle()).content(post.getContent()).createAt(post.getCreatedAt()).build());
             }
         }
         return posts;

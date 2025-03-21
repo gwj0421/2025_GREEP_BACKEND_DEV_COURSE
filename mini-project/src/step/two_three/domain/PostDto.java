@@ -9,28 +9,57 @@ public class PostDto {
     private LocalDateTime createAt;
     private LocalDateTime updatedAt;
 
-    public PostDto(String title, String content, LocalDateTime createAt, LocalDateTime updatedAt) {
+    private PostDto(String title, String content, Long boardId, LocalDateTime createAt, LocalDateTime updatedAt) {
         this.title = title;
         this.content = content;
+        this.boardId = boardId;
         this.createAt = createAt;
         this.updatedAt = updatedAt;
     }
 
-    public PostDto(String title, String content, LocalDateTime createAt) {
-        this.title = title;
-        this.content = content;
-        this.createAt = createAt;
-    }
+    public static class PostDtoBuilder implements Builder<PostDto> {
+        private String title;
+        private String content;
+        private Long boardId;
+        private LocalDateTime createAt;
+        private LocalDateTime updatedAt;
 
-    public PostDto(String title, String content, Long boardId) {
-        this.title = title;
-        this.content = content;
-        this.boardId = boardId;
-    }
+        private PostDtoBuilder() {
+        }
 
-    public PostDto(String title, String content) {
-        this.title = title;
-        this.content = content;
+        public static PostDtoBuilder builder() {
+            return new PostDtoBuilder();
+        }
+
+        public PostDtoBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public PostDtoBuilder content(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public PostDtoBuilder boardId(Long boardId) {
+            this.boardId = boardId;
+            return this;
+        }
+
+        public PostDtoBuilder createAt(LocalDateTime createAt) {
+            this.createAt = createAt;
+            return this;
+        }
+
+        public PostDtoBuilder updatedAt(LocalDateTime updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        @Override
+        public PostDto build() {
+            return null;
+        }
     }
 
     public String getTitle() {

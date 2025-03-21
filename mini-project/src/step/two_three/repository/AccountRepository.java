@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static step.two_three.domain.AccountDto.*;
+
 public class AccountRepository {
     private List<Account> repository;
     private Long primaryKey;
@@ -31,7 +33,13 @@ public class AccountRepository {
     public Optional<AccountDto> read(Long accountId) {
         for (Account account : repository) {
             if (account.getAccountId() == accountId) {
-                return Optional.of(new AccountDto(account.getId(), account.getEmail(), account.getCreatedAt()));
+                return Optional.of(
+                        AccountDtoBuilder.builder()
+                                .id(account.getId())
+                                .email(account.getEmail())
+                                .createAt(account.getCreatedAt())
+                                .build()
+                );
             }
         }
         return Optional.empty();
