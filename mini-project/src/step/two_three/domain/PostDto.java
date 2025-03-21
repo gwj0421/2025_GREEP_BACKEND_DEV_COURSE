@@ -58,7 +58,7 @@ public class PostDto {
 
         @Override
         public PostDto build() {
-            return null;
+            return new PostDto(title, content, boardId, createAt, updatedAt);
         }
     }
 
