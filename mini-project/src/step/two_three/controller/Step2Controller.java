@@ -30,6 +30,9 @@ public class Step2Controller {
                     case BOARD -> processBoard(request);
                     case POST -> processPost(request);
                     case ACCOUNT -> processAccount(request);
+                    case EXIT -> {
+                        return;
+                    }
                     default -> STEP_2_VIEW.showInvalidInput();
                 }
             } catch (IncorrectInputException | IOException e) {

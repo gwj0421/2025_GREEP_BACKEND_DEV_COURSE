@@ -4,6 +4,7 @@ public enum Category {
     BOARD("boards"),
     POST("posts"),
     ACCOUNT("accounts"),
+    EXIT("exit"),
     EMPTY("");
     private String command;
 
