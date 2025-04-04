@@ -3,6 +3,7 @@ drop database if exists a6;
 create database a6;
 use a6;
 
+
 # 부서(홍보, 기획, IT)
 create table dept
 (
